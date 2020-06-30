@@ -7,17 +7,9 @@ import hangman4 from "../images/hangman4.jpg";
 import hangman5 from "../images/hangman5.jpg";
 import hangman6 from "../images/hangman6.jpg";
 const Hangman = ({ fails }) => {
-  const imgs = [
-    hangman0,
-    hangman1,
-    hangman2,
-    hangman3,
-    hangman4,
-    hangman5,
-    hangman6,
-  ];
+  const imgs = [hangman0, hangman1, hangman2, hangman3, hangman4, hangman5, hangman6];
   return (
-    <div>
+    <div className="hangman">
       <img alt="" src={imgs[fails]} />
     </div>
   );

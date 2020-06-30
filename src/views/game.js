@@ -13,24 +13,26 @@ const Game = () => {
   const wordOnChange = (e) => setWord(e.target.value);
 
   return (
-    <div>
-      <div>Pista: {gameState.pista.toUpperCase().split("").join(" ")}</div>
-      <Hangman fails={gameState.fallos}/>
-      <div>
+    <div className="container gameContainer">
+      <div className="pista">Pista: {gameState.pista.toUpperCase().split("").join(" ")}</div>
+      <Hangman fails={gameState.fallos} />
+      <div className="letras">
         {letters.map((letter) => (
-          <button onClick={() => sendLetter(letter)}>
+          <button className="btn" onClick={() => sendLetter(letter)}>
             {letter.toUpperCase()}
           </button>
         ))}
       </div>
-      <div>
+      <div className="form">
         Arriesgar palabra:
         <input
           value={word}
           onChange={wordOnChange}
           onKeyPress={(e) => e.charCode === 13 && sendWord(word)}
         />
-        <button onClick={() => sendWord(word)}>Enviar</button>
+        <button className="btn primary" onClick={() => sendWord(word)}>
+          Enviar
+        </button>
       </div>
     </div>
   );
