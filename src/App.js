@@ -12,7 +12,19 @@ function App() {
     if (!gameState || gameState.gano || gameState.perdio) return <GameSelect />;
     return <Game />;
   };
-  return <div>{renderView()}</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      {renderView()}
+    </div>
+  );
 }
 
 export default App;

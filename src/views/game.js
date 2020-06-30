@@ -4,6 +4,7 @@ import Hangman from "../components/hangman";
 
 const Game = () => {
   const { gameState, sendLetter, sendWord } = React.useContext(GameContext);
+  const [usedLetters, setUsedLetters] = React.useState(new Set());
   const letters = React.useMemo(() => {
     return [].concat.apply([], Array(26)).map(function (_, i) {
       return String.fromCharCode(i + 65);
@@ -11,28 +12,64 @@ const Game = () => {
   }, []);
   const [word, setWord] = React.useState("");
   const wordOnChange = (e) => setWord(e.target.value);
-
+  const onSendLetter = (letter) => {
+    setUsedLetters((usedLetters) => usedLetters.add(letter));
+    sendLetter(letter);
+  };
   return (
-    <div className="container gameContainer">
-      <div className="pista">Pista: {gameState.pista.toUpperCase().split("").join(" ")}</div>
-      <Hangman fails={gameState.fallos} />
-      <div className="letras">
-        {letters.map((letter) => (
-          <button className="btn" onClick={() => sendLetter(letter)}>
-            {letter.toUpperCase()}
-          </button>
-        ))}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        overflowY: "auto",
+        padding: "10px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "10px 0",
+        }}
+      >
+        <Hangman fails={gameState.fallos} />
+        <div style={{ letterSpacing: "5px" }}>
+          {gameState.pista.toUpperCase()}
+        </div>
       </div>
-      <div className="form">
-        Arriesgar palabra:
-        <input
-          value={word}
-          onChange={wordOnChange}
-          onKeyPress={(e) => e.charCode === 13 && sendWord(word)}
-        />
-        <button className="btn primary" onClick={() => sendWord(word)}>
-          Enviar
-        </button>
+      <div style={{ flexBasis: "50%" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, 70px)",
+            gap: "10px",
+            justifyContent: "center",
+            marginBottom: "10px",
+          }}
+        >
+          {letters.map((letter) => (
+            <button
+              style={{ padding: "10px" }}
+              disabled={usedLetters.has(letter)}
+              onClick={() => onSendLetter(letter)}
+            >
+              {letter.toUpperCase()}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            value={word}
+            onChange={wordOnChange}
+            onKeyPress={(e) => e.charCode === 13 && sendWord(word)}
+          />
+          <button style={{ marginLeft: "5px" }} onClick={() => sendWord(word)}>
+            Arriesgar
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -11,8 +11,10 @@ const GameContextProvider = ({ children }) => {
       method: "POST",
     });
     const state = await response.json();
-    if ("nick" in state) setNick(newNick);
-    else setError(state.error);
+    if ("nick" in state) {
+      setNick(newNick);
+      setError(null);
+    } else setError(state.error);
   }, []);
   const startGame = React.useCallback(async () => {
     const response = await fetch(`http://localhost:3000/${nick}/start`, {
