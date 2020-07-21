@@ -33,7 +33,7 @@ const GameSelect = () => {
                             <Hangman hanged={true} fails={gameState.fallos} />
                         )}
                         {gameState.juegosTotales > 0 && (
-                            <div>
+                            <div id="count">
                                 Llevás {gameState.juegosGanados} de{' '}
                                 {gameState.juegosTotales} partidas ganadas.
                             </div>
