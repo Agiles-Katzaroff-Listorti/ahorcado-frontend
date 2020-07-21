@@ -5,7 +5,7 @@ on:
       - master
   pull_request:
 jobs:
-  build:
+  AT:
     runs-on: windows-latest
     steps:
       - name: Checkout
