@@ -4,7 +4,7 @@ const { getWebdriver, By } = require('./webdriver');
 jest.setTimeout(60000);
 
 defineFeature(feature, test => {
-    test('Count 3 correct games', ({ given, when, then }) => {
+    test('Count 3 total games', ({ given, when, then }) => {
         const driverPromise = getWebdriver();
         given('I set test-pepito as nick', async () => {
             const driver = await driverPromise;
@@ -77,7 +77,7 @@ defineFeature(feature, test => {
             button.click();
         });
 
-        when('I guess pepito', async () => {
+        when('I guess toto', async () => {
             const driver = await driverPromise;
             await driver.wait(function () {
                 return driver
@@ -85,12 +85,12 @@ defineFeature(feature, test => {
                     .then(found => !!found.length);
             }, 5000);
             const input = await driver.findElement(By.id('guessWordInput'));
-            input.sendKeys('pepito');
+            input.sendKeys('toto');
             const button = await driver.findElement(By.id('guessWordBtn'));
             button.click();
         });
 
-        then('I should get 3 correct games', async () => {
+        then('I should get 3 total games', async () => {
             const driver = await driverPromise;
             await driver.wait(function () {
                 return driver
@@ -99,7 +99,7 @@ defineFeature(feature, test => {
             }, 5000);
             const message = await driver.findElement(By.id('count'));
             const text = await message.getText()
-            expect(text).toBe("Llevás 3 de 3 partidas ganadas.")
+            expect(text).toContain("3 partidas ganadas.")
             await driver.close();
         });
     });
