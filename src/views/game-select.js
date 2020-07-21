@@ -40,7 +40,7 @@ const GameSelect = () => {
             )}
           </React.Fragment>
         )}
-        <button onClick={startGame}>Jugar{gameState && " de nuevo"}</button>
+        <button onClick={startGame} id={"startBtn"}>Jugar{gameState && " de nuevo"}</button>
       </div>
     </div>
   );

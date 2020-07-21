@@ -65,8 +65,9 @@ const Game = () => {
             value={word}
             onChange={wordOnChange}
             onKeyPress={(e) => e.charCode === 13 && sendWord(word)}
+            id={"guessWordInput"}
           />
-          <button style={{ marginLeft: "5px" }} onClick={() => sendWord(word)}>
+          <button style={{ marginLeft: "5px" }} onClick={() => sendWord(word)} id={"guessWordBtn"}>
             Arriesgar
           </button>
         </div>
