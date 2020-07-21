@@ -1,6 +1,6 @@
 const { Builder, By } = require("selenium-webdriver");
 const getDriver = async () => await new Builder().forBrowser("chrome").build();
-const url = "localhost:3000";
+const url = "https://ahorcado-g4.netlify.app/";
 
 const getWebdriver = async () => {
   const driver = await getDriver();
