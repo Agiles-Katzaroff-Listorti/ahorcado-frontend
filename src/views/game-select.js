@@ -22,7 +22,7 @@ const GameSelect = () => {
                     rowGap: '10px'
                 }}
             >
-                {!gameState && <div>Bienvenido {nick}!</div>}
+                {!gameState && <div>Bienvenide queride {nick}!</div>}
                 {gameState && (
                     <React.Fragment>
                         <div id="result">
