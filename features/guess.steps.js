@@ -6,7 +6,7 @@ jest.setTimeout(60000);
 defineFeature(feature, (test) => {
   test("Guess a word correctly", ({ given, when, then }) => {
     const driverPromise = getWebdriver();
-    given("I set test-pepito as nick", async () => {
+    given("I set testpepito as nick", async () => {
       const driver = await driverPromise;
       await driver.wait(function () {
         return driver
@@ -14,7 +14,7 @@ defineFeature(feature, (test) => {
           .then((found) => !!found.length);
       }, 5000);
       const input = await driver.findElement(By.id("nick"));
-      input.sendKeys("test-pepito");
+      input.sendKeys("testpepito");
       const button = await driver.findElement(By.id("loginBtn"));
       button.click();
     });
